@@ -1,21 +1,23 @@
 <?php
 
-use Gaivoronskiy\MyLog;
-use Gaivoronskiy\GaivoronskiyException;
-use Gaivoronskiy\QuEquation;
+use Loginov\MyLog;
+use Loginov\LoginovException;
+use Loginov\QuEquation;
 
 include "core/EquationInterface.php";
 include "core/LogAbstract.php";
 include "core/LogInterface.php";
-include "Gaivoronskiy/MyLog.php";
-include "Gaivoronskiy/Equation.php";
-include "Gaivoronskiy/QuEquation.php";
-include "Gaivoronskiy/GaivoronskiyException.php";
+include "Loginov/MyLog.php";
+include "Loginov/Equation.php";
+include "Loginov/QuEquation.php";
+include "Loginov/LoginovException.php";
 
 ini_set("display_errors", 1);
 error_reporting(-1);
 
 try {
+	MyLog::log("Версия программы: " . trim(file_get_contents('version')) );
+
     $b = new QuEquation();
     $values = array();
 
@@ -32,7 +34,7 @@ try {
 
     $str = implode(", ", $x);
     MyLog::log("Корни уравнения: " . $str);
-} catch (GaivoronskiyException $e) {
+} catch (LoginovException $e) {
     MyLog::log($e->getMessage());
 }
 
